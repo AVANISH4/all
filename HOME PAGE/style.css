@@ -17,14 +17,14 @@ body {
 /* Header */
 .header {
   width: 100%;
-  padding: 20px 8%;
+  padding: 2px 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: rgba(0,0,0,0.6);
   position: fixed;
-  top: 0;
-  z-index: 1000;
+  top: 1px;
+  z-index: 2;
 }
 
 .logo {
@@ -35,7 +35,9 @@ body {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 30px;
+  gap: 40px;
+  padding-left: 800px;
+  font-size: 20px;
 }
 
 .nav-links a {
