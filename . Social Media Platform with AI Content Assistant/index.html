@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Social Media</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+      color: #333;
+    }
+
+    header {
+      background: #1e1e2f;
+      color: white;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 1.5em;
+      color: #00b4d8;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+    }
+
+    .sidebar {
+      width: 25%;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      height: fit-content;
+    }
+
+    .main {
+      width: 75%;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .post-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      resize: none;
+      min-height: 80px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #00b4d8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #0077b6;
+    }
+
+    .post {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+
+    .post h3 {
+      color: #0077b6;
+      margin-bottom: 5px;
+    }
+
+    .ai-section {
+      margin-top: 15px;
+    }
+
+    .ai-section button {
+      background: #3a0ca3;
+    }
+
+    .ai-section button:hover {
+      background: #480ca8;
+    }
+
+    .comment {
+      margin-top: 10px;
+      padding-left: 10px;
+      border-left: 3px solid #00b4d8;
+      font-size: 0.9em;
+      color: #444;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI Social Media</h1>
+    <nav>
+      <button onclick="alert('Profile feature coming soon!')">Profile</button>
+      <button onclick="alert('Messages feature coming soon!')">Messages</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="sidebar">
+      <h2>AI Suggestions</h2>
+      <p id="ai-suggestion">💡 Click below for an AI post idea!</p>
+      <button onclick="generateAISuggestion()">Generate Idea</button>
+    </div>
+
+    <div class="main">
+      <div class="post-box">
+        <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+        <button onclick="createPost()">Post</button>
+      </div>
+
+      <div id="feed"></div>
+    </div>
+  </div>
+
+  <script>
+    const feed = document.getElementById('feed');
+    const aiIdeas = [
+      "Share your thoughts about AI changing the world 🌍",
+      "Post about your latest coding project 💻",
+      "Talk about mental health and productivity 🧠",
+      "Ask your followers their favorite tech tools ⚙️",
+      "Write a quick motivational quote 🔥"
+    ];
+
+    function generateAISuggestion() {
+      const randomIdea = aiIdeas[Math.floor(Math.random() * aiIdeas.length)];
+      document.getElementById('ai-suggestion').textContent = "💡 " + randomIdea;
+    }
+
+    function createPost() {
+      const text = document.getElementById('postContent').value;
+      if (text.trim() === '') {
+        alert("Please write something before posting!");
+        return;
+      }
+
+      const post = document.createElement('div');
+      post.classList.add('post');
+      post.innerHTML = `
+        <h3>@you</h3>
+        <p>${text}</p>
+        <div class="ai-section">
+          <button onclick="generateAIComment(this)">Generate AI Comment</button>
+          <div class="comment"></div>
+        </div>
+      `;
+      feed.prepend(post);
+      document.getElementById('postContent').value = '';
+    }
+
+    const aiComments = [
+      "That's really interesting! 🤔",
+      "I completely agree with your point! 👏",
+      "AI will definitely impact that in the future 🚀",
+      "Thanks for sharing this insight 🌟",
+      "Wow, that’s a fresh perspective! 💡"
+    ];
+
+    function generateAIComment(button) {
+      const randomComment = aiComments[Math.floor(Math.random() * aiComments.length)];
+      const commentDiv = button.nextElementSibling;
+      commentDiv.textContent = randomComment;
+    }
+  </script>
+</body>
+</html>
